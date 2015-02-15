@@ -1,6 +1,6 @@
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
-from dash.views import IndexView
+from src.views import IndexView
 
 urlpatterns = patterns('',
     # Examples:
