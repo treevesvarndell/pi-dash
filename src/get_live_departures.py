@@ -2,10 +2,9 @@ from xml.etree import ElementTree
 import urllib2
 
 
-def get_live_departures(html=None, station="eai"):
+def train_departures_from_station(html=None, station="eai"):
     html = html or urllib2.urlopen("http://www.dlrlondon.co.uk/xml/mobile/%s.xml" % station).read()
     xml_file = ElementTree.fromstring(html)
-
     info = {
         "timestamp": xml_file.findall(".//")[9].text.strip(),
         "east1": xml_file.findall(".//")[4].text.strip(),
@@ -17,8 +16,3 @@ def get_live_departures(html=None, station="eai"):
     }
 
     return info
-
-
-def main():
-    get_live_departures()
-

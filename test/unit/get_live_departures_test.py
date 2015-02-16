@@ -1,9 +1,9 @@
 from unittest import TestCase
-from dash.dash import pull_data
+from src import get_live_departures
 
 class LiveDeparturesUnitTest(TestCase):
     def test_get_live_departures(self):
-        actual = pull_data.get_live_departures(html=test_html)
+        actual = get_live_departures.train_departures_from_station(html=test_html)
         expected = {
             "timestamp": "23:01",
             "east1": "1 Woolwich Arsn   2 mins",
@@ -14,9 +14,6 @@ class LiveDeparturesUnitTest(TestCase):
             "west3": "3 BANK           14 MINS"
         }
         self.assertDictEqual(actual, expected)
-
-
-
 
 
 test_html = '''<?xml version="1.0" encoding="UTF-8"?>
