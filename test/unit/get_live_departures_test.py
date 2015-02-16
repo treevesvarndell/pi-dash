@@ -2,7 +2,7 @@ from unittest import TestCase
 from src import get_live_departures
 
 class LiveDeparturesUnitTest(TestCase):
-    def test_get_live_departures(self):
+    def check_departure_times_can_be_parsed_and_return_correct_info(self):
         actual = get_live_departures.train_departures_from_station(html=test_html)
         expected = {
             "timestamp": "23:01",
