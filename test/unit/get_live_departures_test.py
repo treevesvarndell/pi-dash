@@ -1,5 +1,5 @@
 from unittest import TestCase
-from src import get_live_departures
+from dashboard import get_live_departures
 
 class LiveDeparturesUnitTest(TestCase):
     def check_departure_times_can_be_parsed_and_return_correct_info(self):
