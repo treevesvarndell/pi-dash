@@ -1,6 +1,9 @@
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
+from dashboard.models import TrainDeparture
 from dashboard.views import IndexView
+
+admin.site.register(TrainDeparture)
 
 urlpatterns = patterns('',
     # Examples:
