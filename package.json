@@ -22,7 +22,6 @@
   "homepage": "https://github.com/treevesvarndell/dashboard",
   "devDependencies": {
     "browserify": "^9.0.3",
-    "browserify-shim": "^3.8.3",
-    "uglify-js": "^2.4.16"
+    "browserify-shim": "^3.8.3"
   }
 }
