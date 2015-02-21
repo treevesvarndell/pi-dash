@@ -1,4 +1,5 @@
 {% load staticfiles %}
+{% load pipeline %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,10 +13,12 @@
     <title>BillKeeper</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet">
+    {% stylesheet 'libraries' %}
+    {% stylesheet 'dashboard' %}
+    <!--<link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet">-->
 
     <!-- Custom styles for this template -->
-    <link href="{% static "css/dashboard.css" %}" rel="stylesheet">
+    <!--<link href="{% static "css/dashboard.css" %}" rel="stylesheet">-->
 
     <!--&lt;!&ndash; Latest compiled and minified CSS &ndash;&gt;-->
     <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">-->
@@ -247,10 +250,11 @@
 <!-- Bootstrap core JavaScript
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.11/angular.min.js"></script>
-<!-- Latest compiled and minified JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+{% javascript 'browserify' %}
+<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>-->
+<!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.11/angular.min.js"></script>-->
+<!--&lt;!&ndash; Latest compiled and minified JavaScript &ndash;&gt;-->
+<!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>-->
 
 <script src="{% static "js/holder.js" %}"></script>
 

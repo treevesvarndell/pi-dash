@@ -37,7 +37,8 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'dashboard',
-    'rest_framework'
+    'rest_framework',
+    'pipeline'
 )
 
 MIDDLEWARE_CLASSES = (
@@ -56,6 +57,41 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
     ]
+}
+
+PIPELINE_COMPILERS = (
+    'pipeline_browserify.compiler.BrowserifyCompiler',
+)
+
+PIPELINE_JS_COMPRESSOR = 'pipeline.compressors.uglifyjs.UglifyJSCompressor'
+PIPELINE_ENABLED = False
+
+if DEBUG:
+    PIPELINE_BROWSERIFY_ARGUMENTS = '-d'
+
+PIPELINE_JS = {
+    'browserify': {
+        'source_filenames': (
+            'js/index.browserify.js',
+        ),
+        'output_filename': 'js/browserified.js',
+    },
+}
+
+PIPELINE_CSS = {
+    # Project libraries.
+    'libraries': {
+        'source_filenames': (
+            'bootstrap/dist/css/bootstrap.css',
+        ),
+        'output_filename': 'css/libs.min.css',
+    },
+    'dashboard': {
+        'source_filenames': (
+            'css/dashboard.css',
+        ),
+        'output_filename': 'css/dashboard.min.css',
+    }
 }
 
 ROOT_URLCONF = 'dashboard.urls'
@@ -91,15 +127,19 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static_target')
 
+STATICFILES_STORAGE = 'pipeline.storage.PipelineCachedStorage'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
+    os.path.join(BASE_DIR, 'node_modules'),
 )
 
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-    'compressor.finders.CompressorFinder',
+    # 'compressor.finders.CompressorFinder',
+    'pipeline.finders.PipelineFinder',
 )
 
 TEMPLATE_DIRS = (
