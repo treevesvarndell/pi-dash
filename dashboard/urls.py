@@ -13,11 +13,12 @@ class TrainDepartureSerializer(serializers.HyperlinkedModelSerializer):
         fields = ('created_at', 'eta', 'destination', 'station')
 
 
-class TrainDepartureViewSet(viewsets.ReadOnlyModelViewSet):
 
+class TrainDepartureViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = TrainDeparture.objects.all()
     serializer_class = TrainDepartureSerializer
 
+# Routers provide an easy way of automatically determining the URL conf.
 router = routers.DefaultRouter()
 router.register(r'departures', TrainDepartureViewSet)
 
