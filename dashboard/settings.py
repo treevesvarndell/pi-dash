@@ -99,6 +99,7 @@ BOWER_INSTALLED_APPS = (
     'underscore',
     'bootstrap',
     'holderjs',
+    'angular',
 )
 
 STATIC_URL = '/static/'

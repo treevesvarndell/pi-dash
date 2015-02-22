@@ -1,7 +1,9 @@
-var $ = require('jquery');
+(function() {
 
-$(function() {
-    alert('Ready!');
-    console.log( "ready!" );
-});
+    angular.module('app.dashboard', [])
+    .controller('DeparturesController', function() {
+        this.testing='TEEST';
+        });
 
+
+})();
