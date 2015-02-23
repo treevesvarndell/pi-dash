@@ -48,14 +48,32 @@
 
                 <h2 class="sub-header">
                     <img src="/static/img/dlr.svg" type="image/svg+xml"  style="vertical-align: text-bottom;" width="45"/>
-                    East India Departures
+                    East India Electronic Passenger Locomotive Departures Board
                     <span us-spinner spinner-key="departuresSpinner"></span>
                 </h2>
 
+
+
                 <div class="row">
-                    <div class="col-md-4" data-ng-repeat="train in depCtrl.departures">
-                        <p>{{ train.destination }}</p>
-                        <p><span am-time-ago="train.eta"></span></p>
+
+                    <div class="col-xs-6 col-sm-6 col-md-6">
+                        <h3>Westbound</h3>
+
+                        <div data-ng-repeat="train in depCtrl.departuresWest">
+                            <p>{{ train.destination }} <span am-time-ago="train.eta"></span></p>
+                            <!--<div data-ng-repeat="username in depCtrl.people">-->
+                                <!--<img class="pull-right img-circle" data-ng-src="//graph.facebook.com/{{username}}/picture?width=50"/>-->
+                            <!--</div>-->
+                        </div>
+
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6">
+                        <h3>Eastbound</h3>
+                        <div data-ng-repeat="train in depCtrl.departuresEast">
+                        <p>{{ train.destination }} <span am-time-ago="train.eta"></span></p>
+                        <!--<div data-ng-repeat="username in depCtrl.people">-->
+                            <!--<img class="pull-left img-circle" data-ng-src="//graph.facebook.com/{{username}}/picture?width=50"/>-->
+                        <!--</div>-->
 
                     </div>
 
