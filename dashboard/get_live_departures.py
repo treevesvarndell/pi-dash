@@ -1,12 +1,7 @@
 import urllib2
+from pprint import pprint
 from datetime import datetime, timedelta
 from xml.etree import ElementTree
-
-import os
-
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "dashboard.settings")
-
-from models import TrainDeparture
 
 
 def train_departures_from_station(html=None, station="eai"):
@@ -14,26 +9,46 @@ def train_departures_from_station(html=None, station="eai"):
     xml_file = ElementTree.fromstring(html)
     all_elements = xml_file.findall(".//")
     element_list = [
-        (4, 'text'),
-        (7, 'text'),
-        (8, 'tail'),
-        (16, 'text'),
-        (19, 'text'),
-        (20, 'tail')
+        (4, 'text', 'east'),
+        (7, 'text', 'east'),
+        (8, 'tail', 'east'),
+        (16, 'text', 'west'),
+        (19, 'text', 'west'),
+        (20, 'tail', 'west')
     ]
 
-    for e in element_list:
+    trains = []
 
+    for e in element_list:
         base_query = 'all_elements[%s].%s.strip()[2:].split()' % (e[0], e[1])
         eta_query = base_query + '[-2:-1]'
 
-        if eval(eta_query) == []:
+        eta = None
+
+        if eval(base_query) == []:
             break
-        elif eval(base_query) == []:
-            break
-        train = TrainDeparture(
-            eta=(datetime.now() + timedelta(minutes=int(eval(eta_query + '[0]')))).strftime('%Y-%m-%d %H:%M:%S'),
-            destination=eval(base_query + '[0]').upper(),
-            station=station
-        )
-        train.save()
+
+        if eval(eta_query) != []:
+            try:
+                eta = (datetime.now() + timedelta(minutes=int(eval(eta_query + '[0]')))).strftime('%Y-%m-%d %H:%M:%S')
+            except ValueError:
+                eta = None
+
+        destination = eval(base_query)
+
+        if len(destination) > 2:
+            destination.pop()
+            destination.pop()
+
+        trains.append({
+            'direction': (e[2]),
+            'eta': eta,
+            'destination': ' '.join(destination).upper(),
+            'station': station
+        })
+
+    pprint(trains)
+    return trains
+
+
+train_departures_from_station()

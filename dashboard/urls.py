@@ -2,25 +2,42 @@ from django.conf.urls import patterns, include, url
 from django.contrib import admin
 from rest_framework import routers, serializers, viewsets
 from rest_framework.response import Response
+
 from dashboard.models import TrainDeparture
 from dashboard.views import IndexView
 from get_live_departures import train_departures_from_station
+
 
 admin.site.register(TrainDeparture)
 
 class TrainDepartureSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = TrainDeparture
-        fields = ('created_at', 'eta', 'destination', 'station')
+        fields = ('created_at', 'direction', 'eta', 'destination', 'station')
 
 class TrainDepartureViewSet(viewsets.ReadOnlyModelViewSet):
-    train_departures_from_station()
+    TrainDeparture.objects.all().delete()
+    trains = train_departures_from_station()
+    for t in trains:
+        TrainDeparture(
+            direction=t['direction'],
+            eta=t['eta'],
+            destination=t['destination'],
+            station=t['station']
+        ).save()
     queryset = TrainDeparture.objects.all()
     serializer_class = TrainDepartureSerializer()
 
     def list(self, request):
         TrainDeparture.objects.all().delete()
-        train_departures_from_station()
+        trains = train_departures_from_station()
+        for t in trains:
+            TrainDeparture(
+                direction=t['direction'],
+                eta=t['eta'],
+                destination=t['destination'],
+                station=t['station']
+            ).save()
         serializer = TrainDepartureSerializer(self.get_queryset(), many=True)
         return Response(serializer.data)
 
