@@ -100,6 +100,10 @@ BOWER_INSTALLED_APPS = (
     'bootstrap',
     'holderjs',
     'angular',
+    'moment-timezone',
+    'angular-moment',
+    'spin',
+    'angular-spinner',
 )
 
 STATIC_URL = '/static/'

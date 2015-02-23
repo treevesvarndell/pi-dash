@@ -1,9 +1,5 @@
 (function() {
 
-    angular.module('app.dashboard', [])
-    .controller('DeparturesController', function() {
-        this.testing='TEEST';
-        });
-
+    angular.module('app.dashboard', ['angularMoment', 'angularSpinner']);
 
 })();
