@@ -4,14 +4,27 @@
         .module('app.dashboard')
         .controller('DeparturesController', DeparturesController);
 
+    DeparturesController.$inject = ['DeparturesService'];
 
-    function DeparturesController() {
+    function DeparturesController(departuresService) {
+
+
         var vm = this;
-        vm.departures = 'Departures from the controller...';
+//        vm.departuresService = DeparturesService;
+
+        getDepartures();
+
+        function getDepartures() {
+            console.log(departuresService.getDepartures);
+            return departuresService.getDepartures().then(function(data) {
+                vm.departures = data;
+                return vm.departures;
+            })
+
+        }
 
     }
 
-//    DeparturesController.$inject = ['$scope'];
 
 
 
