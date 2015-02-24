@@ -1,5 +1,4 @@
 import urllib2
-from pprint import pprint
 from datetime import datetime, timedelta
 from xml.etree import ElementTree
 
@@ -47,7 +46,6 @@ def train_departures_from_station(html=None, station="eai"):
             'station': station
         })
 
-    pprint(trains)
     return trains
 
 
