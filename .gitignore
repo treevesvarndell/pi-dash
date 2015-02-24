@@ -2,4 +2,4 @@
 .idea/
 node_modules
 static_target
-db.sqlite3
+*.sqlite3
