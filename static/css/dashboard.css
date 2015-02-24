@@ -103,3 +103,15 @@ body {
   display: inline-block;
   border-radius: 50%;
 }
+
+.will-make-it {
+    color: #5cb85c;
+}
+
+.might-make-it {
+    color: #fff;
+}
+
+.wont-make-it {
+    color: #d9534f;
+}

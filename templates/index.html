@@ -13,6 +13,7 @@
 
     <!-- Bootstrap core CSS -->
     <link href='{% static "bootstrap/dist/css/bootstrap.css" %}' rel="stylesheet">
+    <link href='{% static "components-font-awesome/css/font-awesome.css" %}' rel="stylesheet">
     <link href='{% static "css/dashboard.css" %}' rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -41,9 +42,9 @@
     </nav>
 
     <div class="container-fluid">
-        <div class="row">
+        <div class="row" data-ng-controller="DeparturesController as depCtrl">
 
-            <div class="col-sm-12 main" data-ng-controller="DeparturesController as depCtrl">
+            <div class="col-sm-12 main">
 
 
                 <h2 class="sub-header">
@@ -52,34 +53,61 @@
                     <span us-spinner spinner-key="departuresSpinner"></span>
                 </h2>
 
+            </div>
 
+            <div class="col-xs-6 col-sm-6 col-md-6">
 
                 <div class="row">
 
-                    <div class="col-xs-6 col-sm-6 col-md-6">
+                    <div class="col-xs-12">
                         <h3>Westbound</h3>
-
-                        <div data-ng-repeat="train in depCtrl.departuresWest">
-                            <p>{{ train.destination }} <span am-time-ago="train.eta"></span></p>
-                            <!--<div data-ng-repeat="username in depCtrl.people">-->
-                                <!--<img class="pull-right img-circle" data-ng-src="//graph.facebook.com/{{username}}/picture?width=50"/>-->
-                            <!--</div>-->
-                        </div>
-
                     </div>
-                    <div class="col-xs-6 col-sm-6 col-md-6">
-                        <h3>Eastbound</h3>
-                        <div data-ng-repeat="train in depCtrl.departuresEast">
-                        <p>{{ train.destination }} <span am-time-ago="train.eta"></span></p>
-                        <!--<div data-ng-repeat="username in depCtrl.people">-->
-                            <!--<img class="pull-left img-circle" data-ng-src="//graph.facebook.com/{{username}}/picture?width=50"/>-->
-                        <!--</div>-->
 
+                    <div data-ng-repeat-start="train in depCtrl.departuresWest" class="col-sm-12 col-md-4">
+                        <div style="line-height: 50px; font-size: 1.5em;">{{ train.destination }}</div>
+                    </div>
+                    <div class="col-sm-12 col-md-4">
+                        <span style="line-height: 50px; font-size: 1.5em;" am-time-ago="train.eta"></span>
+                    </div>
+                    <div class="col-sm-12 col-md-4" data-ng-repeat-end>
+                        <div data-ng-repeat="(username, code) in train.willHeMakeIt">
+                            <div class="pull-right img-circle text-center" style="padding-top: 10px; font-size: 1.7em; color:#fff; line-height: 50px; margin: 4px 4px; height: 50px; width:50px;" background-image ="//graph.facebook.com/{{username}}/picture?width=50">
+                                <i data-ng-class="{'will-make-it fa-thumbs-up': depCtrl.willMakeIt(code), 'might-make-it fa-rocket': depCtrl.mightMakeIt(code), 'wont-make-it fa-thumbs-down': depCtrl.wontMakeIt(code)}" class="fa"></i>
+                            </div>
+                        </div>
                     </div>
 
                 </div>
 
+
             </div>
+            <div class="col-xs-6 col-sm-6 col-md-6">
+
+                <div class="row">
+
+                    <div class="col-xs-12">
+                        <h3>Eastbound</h3>
+                    </div>
+
+                    <div data-ng-repeat-start="train in depCtrl.departuresEast" class="col-sm-12 col-md-4">
+                        <div style="line-height: 50px; font-size: 1.5em;">{{ train.destination }}</div>
+                    </div>
+                    <div class="col-sm-12 col-md-4">
+                        <span style="line-height: 50px; font-size: 1.5em;" am-time-ago="train.eta"></span>
+                    </div>
+                    <div class="col-sm-12 col-md-4" data-ng-repeat-end>
+                        <div data-ng-repeat="(username, code) in train.willHeMakeIt">
+                            <div class="pull-right img-circle text-center" style="padding-top: 10px; font-size: 1.7em; color:#fff; line-height: 50px; margin: 4px 4px; height: 50px; width:50px;" background-image ="//graph.facebook.com/{{username}}/picture?width=50">
+                                <i data-ng-class="{'will-make-it fa-thumbs-up': depCtrl.willMakeIt(code), 'might-make-it fa-rocket': depCtrl.mightMakeIt(code), 'wont-make-it fa-thumbs-down': depCtrl.wontMakeIt(code)}" class="fa"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </div>
+
         </div>
     </div>
 
@@ -101,6 +129,7 @@
 
     <script type="text/javascript" src="{% static 'js/index.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/departures.service.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/back-img.directive.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/departures.ctrl.js' %}"></script>
 
 </body>

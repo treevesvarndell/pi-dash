@@ -104,6 +104,7 @@ BOWER_INSTALLED_APPS = (
     'angular-moment',
     'spin',
     'angular-spinner',
+    'components-font-awesome',
 )
 
 STATIC_URL = '/static/'
