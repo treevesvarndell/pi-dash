@@ -1,6 +1,6 @@
 import unittest
 
-from get_live_departures import train_departures_from_station
+from dashboard.get_live_departures import train_departures_from_station
 
 
 class LiveDeparturesUnitTest(unittest.TestCase):

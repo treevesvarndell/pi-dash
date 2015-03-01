@@ -1,5 +1,6 @@
 *.pyc
-.idea/
+.idea/*
+components/
 node_modules
 static_target
-*.sqlite3
+db.sqlite3
