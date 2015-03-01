@@ -1,5 +1,3 @@
-Pi hosted Dashboard
+Pi hosted Dashboard [![Build Status](https://travis-ci.org/treevesvarndell/dashboard.svg?branch=master)](https://travis-ci.org/treevesvarndell/dashboard)
 
-This will be a deployable dashboard (ideally to a Pi) using Angular JS and Django / SQL Lite.
-
-More to come soon....
+This is a deployable dashboard (ideally to a Pi) using Angular JS and Django / SQL Lite.
