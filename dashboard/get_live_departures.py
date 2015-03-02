@@ -19,13 +19,17 @@ def train_departures_from_station(html=None, station="eai"):
     trains = []
 
     for e in element_list:
+
+        if eval('all_elements[%s].%s.strip()' % (e[0], e[1])) == '':
+            continue
+
         base_query = 'all_elements[%s].%s.strip()[2:].split()' % (e[0], e[1])
         eta_query = base_query + '[-2:-1]'
 
         eta = None
 
         if eval(base_query) == []:
-            break
+            continue
 
         if eval(eta_query) != []:
             try:
@@ -49,4 +53,6 @@ def train_departures_from_station(html=None, station="eai"):
     return trains
 
 
-train_departures_from_station()
+trains = train_departures_from_station()
+
+print trains
