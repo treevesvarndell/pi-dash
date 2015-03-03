@@ -10,4 +10,3 @@ notifications:
     recipients:
       - advdashboard@googlemail.com
     on_success: always
-    on_failure: always
