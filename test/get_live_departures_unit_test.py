@@ -44,8 +44,8 @@ class LiveDeparturesUnitTest(unittest.TestCase):
             {"destination": "BANK", "direction": "west", "station": "eai", "eta": self.get_time_plus_minutes(14)}
         ]
 
-        for x in xrange(0, len(expected)):
-            self.assertDictEqual(actual[x], expected[x])
+        for x, y in zip(actual, expected):
+            self.assertDictEqual(x, y)
 
     def test_departure_time_set_to_null_if_departure_time_not_present(self):
         html = test_html.format(
@@ -80,8 +80,8 @@ class LiveDeparturesUnitTest(unittest.TestCase):
              "eta": self.get_time_plus_minutes(8)}
         ]
 
-        for x in xrange(0, len(expected)):
-            self.assertDictContainsSubset(actual[x], expected[x])
+        for x, y in zip(actual, expected):
+            self.assertDictEqual(x, y)
 
 
 test_html = '''<?xml version="1.0" encoding="UTF-8"?>

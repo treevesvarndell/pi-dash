@@ -52,8 +52,3 @@ def train_departures_from_station(html=None, station="eai"):
         })
 
     return trains
-
-
-trains = train_departures_from_station()
-
-print trains

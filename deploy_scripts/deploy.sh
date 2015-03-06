@@ -1,5 +1,7 @@
 #!/bin/bash
 
+pgrep -f manage.py runserver | xargs kill
+
 rm -rf ~/deploy
 mkdir ~/deploy
 
@@ -15,8 +17,5 @@ source venv/bin/activate
 pip install -r requirements.txt
 
 python manage.py bower install
-
-python manage.py syncdb
-
 python manage.py runserver 0.0.0.0:8080
 
