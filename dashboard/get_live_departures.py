@@ -1,6 +1,7 @@
 import urllib2
-from datetime import datetime, timedelta
 from xml.etree import ElementTree
+
+from dashboard.time_formatting import datetime_plus
 
 
 def train_departures_from_station(html=None, station="eai"):
@@ -33,7 +34,7 @@ def train_departures_from_station(html=None, station="eai"):
 
         if eval(eta_query) != []:
             try:
-                eta = (datetime.now() + timedelta(minutes=int(eval(eta_query + '[0]')))).strftime('%Y-%m-%d %H:%M:%S')
+                eta = (datetime_plus(minutes=int(eval(eta_query + '[0]')))).strftime('%Y-%m-%d %H:%M:%S')
             except ValueError:
                 eta = None
 
