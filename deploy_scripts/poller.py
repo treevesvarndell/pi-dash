@@ -21,10 +21,9 @@ while True:
         print 'New build available'
 
         if not latest_build.successful:
-            print 'Latest build not successful'
+            print 'Last build ID is failing, skipping deployment'
             sleep(60)
-
-        print 'Last build ID is failing, skipping deployment'
+        
         print 'Latest build ID is "%s" and was successful, now deploying...' % new_id
 
         call(['./deploy.sh'])
