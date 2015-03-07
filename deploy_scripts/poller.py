@@ -1,14 +1,18 @@
-from time import sleep
 from subprocess import call
+from time import sleep
 
+import yaml
 from travispy import TravisPy
 
 
-t = TravisPy.github_auth('e6ce5645b787d809e949d2341eaf962592d72b69')
-repo = t.repo('treevesvarndell/dashboard')
+with open('config.yaml', 'r') as f:
+    config = yaml.load(f)
+
+t = TravisPy.github_auth(config['gh_token'])
+repo = t.repo(config['gh_repo'])
 
 while True:
-    old_id = open('last.txt', 'r').readline()
+    old_id = open('last', 'r').readline()
     new_id = str(repo.last_build_id)
 
     latest_build = t.build(new_id)
@@ -18,14 +22,14 @@ while True:
 
         if not latest_build.successful:
             print 'Latest build not successful'
-            continue
+            sleep(60)
 
         print 'Last build ID is failing, skipping deployment'
         print 'Latest build ID is "%s" and was successful, now deploying...' % new_id
 
         call(['./deploy.sh'])
 
-        with open('last.txt', 'w') as f:
+        with open('last', 'w') as f:
             f.write(new_id)
 
     servers_not_running = call(['pgrep', '-f', 'runserver'])
