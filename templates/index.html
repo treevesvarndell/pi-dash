@@ -50,12 +50,12 @@
                 <h2 class="sub-header">
                     <img src="/static/img/dlr.svg" type="image/svg+xml"  style="vertical-align: text-bottom;" width="45"/>
                     East India Electronic Passenger Locomotive Departures Board
-                    <span us-spinner spinner-key="departuresSpinner"></span>
+                    <span class="pull-right" us-spinner spinner-key="departuresSpinner"></span>
                 </h2>
 
             </div>
 
-            <div class="col-xs-6 col-sm-6 col-md-6">
+            <div class="col-xs-12 col-sm-12 col-md-6">
 
                 <div class="row">
 
@@ -63,13 +63,13 @@
                         <h3>Westbound</h3>
                     </div>
 
-                    <div data-ng-repeat-start="train in depCtrl.departuresWest" class="col-sm-12 col-md-4">
-                        <div style="line-height: 50px; font-size: 1.5em;">{{ train.destination }}</div>
+                    <div data-ng-repeat-start="train in depCtrl.departuresWest" class="col-xs-6 col-sm-5 col-md-5">
+                        <div style="line-height: 50px; font-size: 1.4em;">{{ train.destination }}</div>
                     </div>
-                    <div class="col-sm-12 col-md-4">
-                        <span style="line-height: 50px; font-size: 1.5em;" am-time-ago="train.eta"></span>
+                    <div class="col-xs-6 col-sm-3 col-md-3">
+                        <span style="line-height: 50px; font-size: 1.4em;" am-time-ago="train.eta"></span>
                     </div>
-                    <div class="col-sm-12 col-md-4" data-ng-repeat-end>
+                    <div class="col-xs-6 col-sm-4 col-md-4" data-ng-repeat-end>
                         <div data-ng-repeat="(username, code) in train.willHeMakeIt">
                             <div class="pull-right img-circle text-center" style="padding-top: 10px; font-size: 1.7em; color:#fff; line-height: 50px; margin: 4px 4px; height: 50px; width:50px;" background-image ="//graph.facebook.com/{{username}}/picture?width=50">
                                 <i data-ng-class="{'will-make-it fa-thumbs-up': depCtrl.willMakeIt(code), 'might-make-it fa-rocket': depCtrl.mightMakeIt(code), 'wont-make-it fa-thumbs-down': depCtrl.wontMakeIt(code)}" class="fa"></i>
@@ -81,7 +81,7 @@
 
 
             </div>
-            <div class="col-xs-6 col-sm-6 col-md-6">
+            <div class="col-xs-12 col-sm-12 col-md-6">
 
                 <div class="row">
 
@@ -89,13 +89,13 @@
                         <h3>Eastbound</h3>
                     </div>
 
-                    <div data-ng-repeat-start="train in depCtrl.departuresEast" class="col-sm-12 col-md-4">
-                        <div style="line-height: 50px; font-size: 1.5em;">{{ train.destination }}</div>
+                    <div data-ng-repeat-start="train in depCtrl.departuresEast" class="col-xs-6 col-sm-5 col-md-5">
+                        <div style="line-height: 50px; font-size: 1.4em;">{{ train.destination }}</div>
                     </div>
-                    <div class="col-sm-12 col-md-4">
-                        <span style="line-height: 50px; font-size: 1.5em;" am-time-ago="train.eta"></span>
+                    <div class="col-xs-6 col-sm-3 col-md-3">
+                        <span style="line-height: 50px; font-size: 1.4em;" am-time-ago="train.eta"></span>
                     </div>
-                    <div class="col-sm-12 col-md-4" data-ng-repeat-end>
+                    <div class="col-xs-6 col-sm-4 col-md-4" data-ng-repeat-end>
                         <div data-ng-repeat="(username, code) in train.willHeMakeIt">
                             <div class="pull-right img-circle text-center" style="padding-top: 10px; font-size: 1.7em; color:#fff; line-height: 50px; margin: 4px 4px; height: 50px; width:50px;" background-image ="//graph.facebook.com/{{username}}/picture?width=50">
                                 <i data-ng-class="{'will-make-it fa-thumbs-up': depCtrl.willMakeIt(code), 'might-make-it fa-rocket': depCtrl.mightMakeIt(code), 'wont-make-it fa-thumbs-down': depCtrl.wontMakeIt(code)}" class="fa"></i>
