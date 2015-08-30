@@ -1,12 +1,12 @@
-(function() {
+(function () {
 
     angular
         .module('app.dashboard')
         .controller('DeparturesController', DeparturesController);
 
-    DeparturesController.$inject = ['DeparturesService', '$timeout', 'usSpinnerService'];
+    DeparturesController.$inject = ['DeparturesService', '$timeout'];
 
-    function DeparturesController(departuresService, $timeout, usSpinnerService) {
+    function DeparturesController(departuresService, $timeout) {
 
         var vm = this;
         vm.people = [
@@ -34,7 +34,7 @@
         };
 
         (function getDepartures() {
-            usSpinnerService.spin('departuresSpinner');
+            vm.loading = true;
 
             function calculateWillHeMakeIt(trains) {
 
@@ -45,8 +45,8 @@
                     currDeparture.willHeMakeIt = {};
                     currDeparture.secondsUntil = moment(currDeparture.eta).diff(now, 'seconds');
 
-                    _.each(vm.willHeMakeIt, function(value, key) {
-                        var codedReturn = _.findKey(value, function(value) {
+                    _.each(vm.willHeMakeIt, function (value, key) {
+                        var codedReturn = _.findKey(value, function (value) {
                             return currDeparture.secondsUntil > value;
                         });
 
@@ -60,40 +60,44 @@
                 return trains;
             }
 
-            return departuresService.getDepartures().then(function(data) {
+            return departuresService.getDepartures().then(function (data) {
 
-                var eastBoundTrains = _.filter(data, function(train) { return train.direction === 'east' });
+                var eastBoundTrains = _.filter(data, function (train) {
+                    return train.direction === 'east'
+                });
                 vm.departuresEast = calculateWillHeMakeIt(eastBoundTrains);
                 console.log(vm.departuresEast);
 
-                var westBoundTrains = _.filter(data, function(train) { return train.direction === 'west' });
+                var westBoundTrains = _.filter(data, function (train) {
+                    return train.direction === 'west'
+                });
                 vm.departuresWest = calculateWillHeMakeIt(westBoundTrains);
 
                 $timeout(getDepartures, 15000);
-                usSpinnerService.stop('departuresSpinner');
+                $timeout(function() {
+                    vm.loading=false;
+                }, 1500);
                 return vm.departures;
             });
         })();
 
-        vm.getFacebookProfileImageUrl = function(userId) {
+        vm.getFacebookProfileImageUrl = function (userId) {
             return '//graph.facebook.com/' + userId + '/picture?width=200';
         };
 
-        vm.willMakeIt = function(code) {
+        vm.willMakeIt = function (code) {
             return code === 'y';
         };
 
-        vm.mightMakeIt = function(code) {
+        vm.mightMakeIt = function (code) {
             return code === 'm';
         };
 
-        vm.wontMakeIt = function(code) {
+        vm.wontMakeIt = function (code) {
             return code === 'n';
         };
 
     }
-
-
 
 
 })();

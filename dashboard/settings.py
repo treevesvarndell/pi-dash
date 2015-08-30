@@ -103,7 +103,6 @@ BOWER_INSTALLED_APPS = (
     'moment-timezone#~0.4.0',
     'angular-moment#0.10.2',
     'spin',
-    'angular-spinner',
     'components-font-awesome#~4.4.0',
 )
 

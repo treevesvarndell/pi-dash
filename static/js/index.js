@@ -1,6 +1,6 @@
 (function() {
 
-    angular.module('app.dashboard', ['angularMoment', 'angularSpinner'])
+    angular.module('app.dashboard', ['angularMoment']);
 
     angular.module('app.dashboard').constant('angularMomentConfig', {
         timezone: 'Europe/London',
