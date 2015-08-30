@@ -9,20 +9,24 @@
     function DeparturesController(departuresService, $timeout, usSpinnerService) {
 
         var vm = this;
-        vm.people = ['mrman2289', 'Costelad', 'treevesvarndell'];
+        vm.people = [
+            532170073, //'mrman2289',
+            641356236, //'Costelad',
+            663655424 //'treevesvarndell'
+        ];
 
         vm.willHeMakeIt = {
-            mrman2289: {
+            532170073: { //mrman2289
                 y: 300,
                 m: 210,
                 n: 180
             },
-            Costelad: {
+            641356236: { //Costelad
                 y: 600,
                 m: 480,
                 n: 360
             },
-            treevesvarndell: {
+            663655424: { //treevesvarndell
                 y: 300,
                 m: 210,
                 n: 150
@@ -71,21 +75,21 @@
             });
         })();
 
-        vm.getFacebookProfileImageUrl = function(username) {
-            return '//graph.facebook.com/' + username + '/picture?width=200';
-        }
+        vm.getFacebookProfileImageUrl = function(userId) {
+            return '//graph.facebook.com/' + userId + '/picture?width=200';
+        };
 
         vm.willMakeIt = function(code) {
             return code === 'y';
-        }
+        };
 
         vm.mightMakeIt = function(code) {
             return code === 'm';
-        }
+        };
 
         vm.wontMakeIt = function(code) {
             return code === 'n';
-        }
+        };
 
     }
 
