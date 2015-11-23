@@ -29,10 +29,10 @@ def train_departures_from_station(html=None, station="eai"):
 
         eta = None
 
-        if eval(base_query) == []:
+        if eval(base_query) is []:
             continue
 
-        if eval(eta_query) != []:
+        if eval(eta_query) is not []:
             try:
                 eta = (datetime_plus(minutes=int(eval(eta_query + '[0]')))).strftime('%Y-%m-%d %H:%M:%S')
             except ValueError:
