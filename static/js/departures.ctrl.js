@@ -68,6 +68,12 @@
                     console.log('error:' + error)
                 },
                 function() {
+                    vm.departuresWest = _.sortBy(vm.departuresWest, function(t) {
+                        t.secondsUntil
+                    });
+                    vm.departuresEast = _.sortBy(vm.departuresEast, function(t) {
+                        t.secondsUntil
+                    });
                     vm.loading = false;
                 }
             );
