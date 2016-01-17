@@ -4,9 +4,9 @@
         .module('app.dashboard')
         .service('DeparturesService', DeparturesService);
 
-    DeparturesService.$inject = ['$http'];
+    DeparturesService.$inject = ['$http', 'tflApiConfig', 'rx'];
 
-    function DeparturesService($http) {
+    function DeparturesService($http, tflApiConfig, rx) {
         var vm = this;
 
         var service = {
@@ -15,18 +15,12 @@
 
         return service;
 
-        function getDepartures() {
-            return $http.get('/api/departures')
-                .then(getDeparturesComplete)
-                .catch(function(message) {
-                    console.log(message);
-                }
-            );
+        function getApiUrl() {
+            return tflApiConfig.apiUrl + '?app_id=' + tflApiConfig.appId + '&app_key=' + tflApiConfig.appKey;
+        };
 
-            function getDeparturesComplete(data, status, headers, config) {
-                return data.data;
-            }
-
+        function getDepartures(direction) {
+            return rx.Observable.fromPromise($http.get(getApiUrl()));
         }
     }
 

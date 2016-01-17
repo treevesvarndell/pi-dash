@@ -4,9 +4,9 @@
         .module('app.dashboard')
         .controller('DeparturesController', DeparturesController);
 
-    DeparturesController.$inject = ['DeparturesService', '$timeout'];
+    DeparturesController.$inject = ['DeparturesService', '$timeout', 'rx'];
 
-    function DeparturesController(departuresService, $timeout) {
+    function DeparturesController(departuresService, $timeout, rx) {
 
         var vm = this;
         vm.people = [
@@ -33,53 +33,57 @@
             }
         };
 
-        (function getDepartures() {
+        var trainsObservable = rx.Observable.interval(15000).startWith('testing').map(function() {
             vm.loading = true;
+            return departuresService.getDepartures();
+        });
 
-            function calculateWillHeMakeIt(trains) {
+        trainsObservable.forEach(function(ajaxObservable){
+            ajaxObservable.subscribe(
+                function(trains) {
+                    var now = moment();
 
-                var now = moment();
-                for (i = 0; i < trains.length; i++) {
+                    vm.departuresWest = [];
+                    vm.departuresEast = [];
 
-                    var currDeparture = trains[i];
-                    currDeparture.willHeMakeIt = {};
-                    currDeparture.secondsUntil = moment(currDeparture.eta).diff(now, 'seconds');
+                    rx.Observable.from(trains.data).map(function(train) {
 
-                    _.each(vm.willHeMakeIt, function (value, key) {
-                        var codedReturn = _.findKey(value, function (value) {
-                            return currDeparture.secondsUntil > value;
-                        });
+                        var secondsUntil = moment(train.expectedArrival).diff(now, 'seconds');
 
-                        currDeparture.willHeMakeIt[key] = codedReturn ? codedReturn : 'n';
+                        return {
+                            direction: train.direction,
+                            destination: train.destinationName.replace('DLR Station', ''),
+                            secondsUntil: secondsUntil,
+                            eta: train.expectedArrival,
+                            willHeMakeIt: vm.generateWillHeMakeIt(secondsUntil)
+                        };
 
+                    }).forEach(function(train) {
+//                        console.log(train);
+                        train.direction === 'inbound' ? vm.departuresWest.push(train) : vm.departuresEast.push(train);
                     });
 
-                    console.log(trains[i]);
+                },
+                function(err) {
+                    console.log('error:' + error)
+                },
+                function() {
+                    vm.loading = false;
                 }
+            );
+        });
 
-                return trains;
-            }
-
-            return departuresService.getDepartures().then(function (data) {
-
-                var eastBoundTrains = _.filter(data, function (train) {
-                    return train.direction === 'east'
+        vm.generateWillHeMakeIt = function(secondsUntilTrain) {
+            var willHeMakeIt = {};
+            _.each(vm.willHeMakeIt, function (value, key) {
+                var codedReturn = _.findKey(value, function (value) {
+                    return secondsUntilTrain > value;
                 });
-                vm.departuresEast = calculateWillHeMakeIt(eastBoundTrains);
-                console.log(vm.departuresEast);
 
-                var westBoundTrains = _.filter(data, function (train) {
-                    return train.direction === 'west'
-                });
-                vm.departuresWest = calculateWillHeMakeIt(westBoundTrains);
-
-                $timeout(getDepartures, 15000);
-                $timeout(function() {
-                    vm.loading=false;
-                }, 1500);
-                return vm.departures;
+                willHeMakeIt[key] = codedReturn ? codedReturn : 'n';
             });
-        })();
+            return willHeMakeIt;
+        };
 
         vm.getFacebookProfileImageUrl = function (userId) {
             return '//graph.facebook.com/' + userId + '/picture?width=200';

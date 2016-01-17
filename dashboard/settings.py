@@ -98,12 +98,12 @@ BOWER_INSTALLED_APPS = (
     'jquery',
     'underscore',
     'bootstrap',
-    'holderjs#2.8.2',
     'angular#1.3.14',
     'moment-timezone#~0.4.0',
     'angular-moment#0.10.2',
-    'spin',
     'components-font-awesome#~4.4.0',
+    'angular-rx',
+    'rxjs'
 )
 
 STATIC_URL = '/static/'
