@@ -30,4 +30,5 @@ elif [ $1 = "status" ]; then
   tvservice -s
 else
   echo usage: $(basename $0) "on|off|status"
-fi - See more at: https://systembash.com/how-to-turn-off-your-monitor-via-command-line-in-ubuntu/#sthash.wyLNwV8L.dpuf
+fi
+#See more at: https://systembash.com/how-to-turn-off-your-monitor-via-command-line-in-ubuntu/#sthash.wyLNwV8L.dpuf
