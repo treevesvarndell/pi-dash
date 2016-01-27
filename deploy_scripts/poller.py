@@ -23,6 +23,7 @@ while True:
         if not latest_build.successful:
             print 'Last build ID is failing, skipping deployment'
             sleep(60)
+	    continue
         
         print 'Latest build ID is "%s" and was successful, now deploying...' % new_id
 
