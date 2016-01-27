@@ -13,6 +13,7 @@ if [ $1 = "off" ]; then
 
   echo -en "done.\nCheck:"
   xset -q|grep "Monitor is"
+  sleep 5s
   tvservice -s
 
 elif [ $1 = "on" ]; then
@@ -30,5 +31,10 @@ elif [ $1 = "status" ]; then
   tvservice -s
 else
   echo usage: $(basename $0) "on|off|status"
+<<<<<<< HEAD
 fi 
 #See more at: https://systembash.com/how-to-turn-off-your-monitor-via-command-line-in-ubuntu/#sthash.wyLNwV8L.dpuf
+=======
+fi
+#See more at: https://systembash.com/how-to-turn-off-your-monitor-via-command-line-in-ubuntu/#sthash.wyLNwV8L.dpuf
+>>>>>>> cd22923266ad636caa4a301fe7843629632da873
