@@ -13,6 +13,7 @@ if [ $1 = "off" ]; then
 
   echo -en "done.\nCheck:"
   xset -q|grep "Monitor is"
+  sleep 5s
   tvservice -s
 
 elif [ $1 = "on" ]; then
