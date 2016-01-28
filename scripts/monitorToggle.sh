@@ -22,6 +22,8 @@ elif [ $1 = "on" ]; then
 
   #xset dpms force on
   fbset -depth 8; fbset -depth 32; xrefresh
+  sudo chvt 9 && sudo chvt 7
+
   echo -en "done.\nCheck:"
   xset -q|grep "Monitor is"
   tvservice -s
