@@ -1,5 +1,4 @@
 # Pi-Dash
-[![Build Status](https://travis-ci.org/treevesvarndell/dashboard.svg?branch=master)](https://travis-ci.org/treevesvarndell/dashboard)
 
 This is a dashboard (ideally deployed to a Pi), built using Angular JS and running on a Django web server.
 
