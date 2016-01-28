@@ -16,8 +16,8 @@
         return service;
 
         function getApiUrl() {
-            return tflApiConfig.apiUrl + '?app_id=' + tflApiConfig.appId + '&app_key=' + tflApiConfig.appKey;
-        };
+            return tflApiConfig.apiUrl + '&app_id=' + tflApiConfig.appId + '&app_key=' + tflApiConfig.appKey;
+        }
 
         function getDepartures(direction) {
             return rx.Observable.fromPromise($http.get(getApiUrl()));

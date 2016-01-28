@@ -1,8 +1,19 @@
-Pi hosted Dashboard
+# Pi-Dash
 [![Build Status](https://travis-ci.org/treevesvarndell/dashboard.svg?branch=master)](https://travis-ci.org/treevesvarndell/dashboard)
 
-This is a deployable dashboard (ideally to a Pi) using Angular JS and Django / SQL Lite.
+This is a dashboard (ideally deployed to a Pi), built using Angular JS and running on a Django web server.
 
-Dashboard Full Screen Display
-- http://blogs.wcode.org/2013/09/howto-boot-your-raspberry-pi-into-a-fullscreen-browser-kiosk/
+## Install Process
+
+1. Get node.js
+2. Get pip, then run
+  *```sudo pip install virtualenv```
+3. Run command
+  *```bash sudo npm install -g bower```
+4. Run script 
+  *```deploy_scripts/deploy.sh```
+5. Server will be running at ```http://localhost:8080/``` by default
+
+
+ 
 

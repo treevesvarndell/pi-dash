@@ -4,9 +4,9 @@
         .module('app.dashboard')
         .controller('DeparturesController', DeparturesController);
 
-    DeparturesController.$inject = ['DeparturesService', '$timeout', 'rx'];
+    DeparturesController.$inject = ['DeparturesService', 'rx'];
 
-    function DeparturesController(departuresService, $timeout, rx) {
+    function DeparturesController(departuresService, rx) {
 
         var vm = this;
         vm.people = [
@@ -39,6 +39,7 @@
         });
 
         trainsObservable.forEach(function(ajaxObservable){
+
             ajaxObservable.subscribe(
                 function(trains) {
                     var now = moment();

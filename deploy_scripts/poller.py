@@ -18,14 +18,14 @@ while True:
     latest_build = t.build(new_id)
 
     if new_id != old_id:
-        print 'New build available'
+        print('New build available')
 
         if not latest_build.successful:
-            print 'Last build ID is failing, skipping deployment'
+            print('Last build ID is failing, skipping deployment')
             sleep(60)
-	    continue
+            continue
         
-        print 'Latest build ID is "%s" and was successful, now deploying...' % new_id
+        print('Latest build ID is "%s" and was successful, now deploying...' % new_id)
 
         call(['./deploy.sh'])
 
@@ -35,9 +35,9 @@ while True:
     servers_not_running = call(['pgrep', '-f', 'runserver'])
 
     if servers_not_running:
-        print 'Server not running, starting now...'
+        print('Server not running, starting now...')
         call(['./deploy.sh'])
     else:
-        print 'Server already running on http://0.0.0.0:8080'
+        print('Server already running on http://0.0.0.0:8080')
 
     sleep(60)
