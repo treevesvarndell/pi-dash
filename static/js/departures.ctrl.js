@@ -35,6 +35,7 @@
 
         var trainsObservable = rx.Observable.interval(15000).startWith('testing').map(function() {
             vm.loading = true;
+
             return departuresService.getDepartures();
         });
 
@@ -76,6 +77,7 @@
                         t.secondsUntil
                     });
                     vm.loading = false;
+                    vm.lastRefresh = moment();
                     console.log('Completed!');
                 }
             );
