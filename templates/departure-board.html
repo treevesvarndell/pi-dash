@@ -1,46 +1,10 @@
+{% extends "base_generic.html" %}
+
 {% load staticfiles %}
-<!DOCTYPE html>
-<html lang="en" data-ng-app="app.dashboard">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <meta http-equiv="refresh" content="600">
-    <link rel="icon" href="../../favicon.ico">
 
-    <title>49 Adv Dashboard</title>
+{% block content %}
 
-    <!-- Bootstrap core CSS -->
-    <link href='{% static "bootstrap/dist/css/bootstrap.css" %}' rel="stylesheet">
-    <link href='{% static "components-font-awesome/css/font-awesome.css" %}' rel="stylesheet">
-    <link href='{% static "css/dashboard.css" %}' rel="stylesheet">
-
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-</head>
-
-<body>
 {% verbatim %}
-
-<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="#">49 Adv Dashboard</a>
-        </div>
-        <ul data-ng-controller="ClockCtrl as clockCtrl" class="nav navbar-nav navbar-right">
-            <li><a style="font-size:18px;">{{ clockCtrl.clock | date:'medium'}}</a></li>
-        </ul>
-    </div>
-
-
-</nav>
-
-<div class="container-fluid">
     <div class="row" data-ng-controller="DeparturesController as depCtrl">
 
         <div class="col-sm-12 main">
@@ -125,27 +89,13 @@
 
 
     </div>
-</div>
+    {% endverbatim %}
+{% endblock %}
 
-{% endverbatim %}
-
-<!-- Bootstrap core JavaScript
-================================================== -->
-<!-- Placed at the end of the document so the pages load faster -->
-<script type="text/javascript" src="{% static 'jquery/dist/jquery.js' %}"></script>
-<script type="text/javascript" src="{% static 'bootstrap/dist/js/bootstrap.js' %}"></script>
-<script type="text/javascript" src="{% static 'angular/angular.js' %}"></script>
-<script type="text/javascript" src="{% static 'moment/moment.js' %}"></script>
-<script type="text/javascript" src="{% static 'moment-timezone/moment-timezone.js' %}"></script>
-<script type="text/javascript" src="{% static 'angular-moment/angular-moment.js' %}"></script>
-<script type="text/javascript" src="{% static 'rxjs/dist/rx.all.js' %}"></script>
-<script type="text/javascript" src="{% static 'rx-angular/dist/rx.angular.js' %}"></script>
-<script type="text/javascript" src="{% static 'js/index.js' %}"></script>
-<script type="text/javascript" src="{% static 'js/departures.service.js' %}"></script>
-<script type="text/javascript" src="{% static 'js/back-img.directive.js' %}"></script>
-<script type="text/javascript" src="{% static 'js/clock.ctrl.js' %}"></script>
-<script type="text/javascript" src="{% static 'js/departures.ctrl.js' %}"></script>
-<script type="text/javascript" src="{% static 'lodash/lodash.js' %}"></script>
-
-</body>
-</html>
+{% block scripts %}
+    {{ block.super }}
+    <script type="text/javascript" src="{% static 'js/departures.service.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/back-img.directive.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/departures.ctrl.js' %}"></script>
+    <script type="text/javascript" src="{% static 'lodash/lodash.js' %}"></script>
+{% endblock %}

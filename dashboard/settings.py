@@ -105,7 +105,8 @@ BOWER_INSTALLED_APPS = (
     'angular-rx#1.1.3',
     'bootstrap#3.3.6',
     'moment-timezone#0.4.0',
-    'rxjs#3.1.2'
+    'rxjs#3.1.2',
+    'angular-toggle-switch#1.3.0'
 )
 
 STATIC_URL = '/static/'

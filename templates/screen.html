@@ -1,0 +1,32 @@
+{% extends "base_generic.html" %}
+
+{% load staticfiles %}
+
+{% block css %}
+    {{ block.super }}
+{% endblock %}
+
+{% block content %}
+
+{% verbatim %}
+    <div class="row" data-ng-controller="ScreenToggleCtrl as stCtrl">
+
+        <div class="col-sm-12 text-center" style="padding: 20px;">
+
+            <h3>Screen</h3><div data-toggle-switch data-ng-change="stCtrl.toggleScreen()" data-ng-model="stCtrl.screenStatus"></div>
+
+            <!--<h2>Screen: <input type="checkbox" checked data-ng-model="" data-toggle="toggle" data-width="100" data-height="50"></h2>-->
+
+            <pre>{{ stCtrl | json }}</pre>
+        </div>
+    </div>
+
+{% endverbatim %}
+{% endblock %}
+
+{% block scripts %}
+    {{ block.super }}
+    <script type="text/javascript" src="{% static 'js/screen-toggle.ctrl.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/screen.service.js' %}"></script>
+    <script type="text/javascript" src="{% static 'lodash/lodash.js' %}"></script>
+{% endblock %}

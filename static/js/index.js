@@ -1,6 +1,6 @@
 (function() {
 
-    angular.module('app.dashboard', ['angularMoment', 'rx']);
+    angular.module('app.dashboard', ['angularMoment', 'toggle-switch', 'rx']);
 
     angular.module('app.dashboard').constant('angularMomentConfig', {
         timezone: 'Europe/London',

@@ -7,7 +7,7 @@ from rest_framework.response import Response
 from subprocess import call
 
 
-class ScreenView(views.APIView):
+class ScreenApiView(views.APIView):
     permission_classes = []
 
     def get(self, request):
@@ -27,8 +27,16 @@ class ScreenView(views.APIView):
         return response
 
 
+class ScreenView(TemplateView):
+    template_name = 'screen.html'
+
+    @method_decorator(ensure_csrf_cookie)
+    def dispatch(self, *args, **kwargs):
+        return super(ScreenView, self).dispatch(*args, **kwargs)
+
+
 class IndexView(TemplateView):
-    template_name = 'index.html'
+    template_name = 'departure-board.html'
 
     @method_decorator(ensure_csrf_cookie)
     def dispatch(self, *args, **kwargs):
