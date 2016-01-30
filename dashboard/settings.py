@@ -97,7 +97,6 @@ USE_L10N = True
 BOWER_COMPONENTS_ROOT = os.path.join(BASE_DIR, 'components')
 BOWER_INSTALLED_APPS = (
     'moment#2.9.0',
-    'spin#1.1.6',
     'components-font-awesome#4.4.0',
     'angular#1.3.14',
     'lodash#4.1.0',
@@ -106,10 +105,7 @@ BOWER_INSTALLED_APPS = (
     'angular-rx#1.1.3',
     'bootstrap#3.3.6',
     'moment-timezone#0.4.0',
-    'rxjs#3.1.2',
-    'spin.js#2.0.2',
-    'holderjs#2.8.2',
-    'angular-spinner#0.6.2'
+    'rxjs#3.1.2'
 )
 
 STATIC_URL = '/static/'

@@ -25,115 +25,125 @@
 </head>
 
 <body>
-    {% verbatim %}
+{% verbatim %}
 
-    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
-                        aria-expanded="false" aria-controls="navbar">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#">49 Adv Dashboard</a>
-            </div>
-        </div>
-    </nav>
-
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <div class="container-fluid">
-        <div class="row" data-ng-controller="DeparturesController as depCtrl">
-
-            <div class="col-sm-12 main">
-
-
-                <h2 class="sub-header">
-                    <img data-ng-class="{'loading': depCtrl.loading}" src="/static/img/dlr.svg" type="image/svg+xml"  style="vertical-align: text-bottom;" width="45"/>
-                    East India Electronic Passenger Locomotive Departures Timetable
-                    <!--<span us-spinner="{left:80}" spinner-key="departuresSpinner"></span>-->
-                </h2>
-
-            </div>
-
-            <div class="col-xs-12 col-sm-12 col-md-6">
-
-                <div class="row">
-
-                    <div class="col-xs-12">
-                        <h3>Westbound</h3>
-                    </div>
-
-                    <div data-ng-repeat-start="train in depCtrl.departuresWest" class="col-xs-6 col-sm-5 col-md-5">
-                        <div style="line-height: 50px; font-size: 1.4em;">{{ train.destination }}</div>
-                    </div>
-                    <div class="col-xs-6 col-sm-3 col-md-3 no-padding">
-                        <span style="line-height: 50px; font-size: 1.3em;" am-time-ago="train.eta"></span>
-                    </div>
-                    <div class="col-xs-6 col-sm-4 col-md-4" data-ng-repeat-end>
-                        <div data-ng-repeat="(username, code) in train.willHeMakeIt">
-                            <div class="pull-right img-circle text-center" style="padding-top: 10px; font-size: 1.7em; color:#fff; line-height: 50px; margin: 4px 4px; height: 50px; width:50px;" background-image ="//graph.facebook.com/{{username}}/picture?width=50">
-                                <i data-ng-class="{'will-make-it fa-thumbs-up': depCtrl.willMakeIt(code), 'might-make-it fa-rocket': depCtrl.mightMakeIt(code), 'wont-make-it fa-thumbs-down': depCtrl.wontMakeIt(code)}" class="fa"></i>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-
-
-            </div>
-            <div class="col-xs-12 col-sm-12 col-md-6">
-
-                <div class="row">
-
-                    <div class="col-xs-12">
-                        <h3>Eastbound</h3>
-                    </div>
-
-                    <div data-ng-repeat-start="train in depCtrl.departuresEast" class="col-xs-6 col-sm-5 col-md-5">
-                        <div style="line-height: 50px; font-size: 1.4em;">{{ train.destination }}</div>
-                    </div>
-                    <div class="col-xs-6 col-sm-3 col-md-3 no-padding">
-                        <span style="line-height: 50px; font-size: 1.3em;" am-time-ago="train.eta"></span>
-                    </div>
-                    <div class="col-xs-6 col-sm-4 col-md-4" data-ng-repeat-end>
-                        <div data-ng-repeat="(username, code) in train.willHeMakeIt">
-                            <div class="pull-right img-circle text-center" style="padding-top: 10px; font-size: 1.7em; color:#fff; line-height: 50px; margin: 4px 4px; height: 50px; width:50px;" background-image ="//graph.facebook.com/{{username}}/picture?width=50">
-                                <i data-ng-class="{'will-make-it fa-thumbs-up': depCtrl.willMakeIt(code), 'might-make-it fa-rocket': depCtrl.mightMakeIt(code), 'wont-make-it fa-thumbs-down': depCtrl.wontMakeIt(code)}" class="fa"></i>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-
-            <!--<div class="col-xs-12">-->
-                <!--<pre>{{ depCtrl | json }}</pre>-->
-                <!--<script type="text/javascript"> moWWidgetParams="moAllowUserLocation:false~moBackgroundColour:black~moColourScheme:green~moDays:3~moDomain:www.metoffice.gov.uk~moFSSI:352409~moListStyle:vertical~moMapDisplay:none~moShowFeelsLike:true~moShowUV:true~moShowWind:true~moSpecificHeight:275~moSpecificWidth:300~moSpeedUnits:M~moStartupLanguage:en~moTemperatureUnits:C~moTextColour:white~moGridParams:weather,temperature,wind,uv,pop~"; </script><script type="text/javascript" src="http://www.metoffice.gov.uk/public/pws/components/yoursite/loader.js"> </script>-->
-            <!--</div>-->
-
-
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">49 Adv Dashboard</a>
+            <ul data-ng-controller="ClockCtrl as clockCtrl" class="nav navbar-nav navbar-right">
+                <li>{{ clockCtrl.clock | date:'medium'}}</li>
+            </ul>
         </div>
+        <ul data-ng-controller="ClockCtrl as clockCtrl" class="nav navbar-nav navbar-right">
+            <li><a>{{ clockCtrl.clock | date:'medium'}}</a></li>
+        </ul>
     </div>
 
-    {% endverbatim %}
 
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script type="text/javascript" src="{% static 'jquery/dist/jquery.js' %}"></script>
-    <script type="text/javascript" src="{% static 'bootstrap/dist/js/bootstrap.js' %}"></script>
-    <script type="text/javascript" src="{% static 'angular/angular.js' %}"></script>
-    <script type="text/javascript" src="{% static 'moment/moment.js' %}"></script>
-    <script type="text/javascript" src="{% static 'moment-timezone/moment-timezone.js' %}"></script>
-    <script type="text/javascript" src="{% static 'angular-moment/angular-moment.js' %}"></script>
-    <script type="text/javascript" src="{% static 'rxjs/dist/rx.all.js' %}"></script>
-    <script type="text/javascript" src="{% static 'rx-angular/dist/rx.angular.js' %}"></script>
-    <script type="text/javascript" src="{% static 'js/index.js' %}"></script>
-    <script type="text/javascript" src="{% static 'js/departures.service.js' %}"></script>
-    <script type="text/javascript" src="{% static 'js/back-img.directive.js' %}"></script>
-    <script type="text/javascript" src="{% static 'js/departures.ctrl.js' %}"></script>
-    <script type="text/javascript" src="{% static 'lodash/lodash.js' %}"></script>
+</nav>
+
+<div class="container-fluid">
+    <div class="row" data-ng-controller="DeparturesController as depCtrl">
+
+        <div class="col-sm-12 main">
+
+
+            <h2 class="sub-header">
+                {{ depCtrl.loading }}
+                <img data-ng-class="{'loading': depCtrl.loading}" src="/static/img/dlr.svg" type="image/svg+xml"
+                     style="vertical-align: text-bottom;" width="45"/>
+                East India Electronic Passenger Locomotive Departures Timetable
+                <!--<span us-spinner="{left:80}" spinner-key="departuresSpinner"></span>-->
+            </h2>
+
+        </div>
+
+        <div class="col-xs-12 col-sm-12 col-md-6">
+
+            <div class="row">
+
+                <div class="col-xs-12">
+                    <h3>Westbound</h3>
+                </div>
+
+                <div data-ng-repeat-start="train in depCtrl.departuresWest" class="col-xs-6 col-sm-5 col-md-5">
+                    <div style="line-height: 50px; font-size: 1.4em;">{{ train.destination }}</div>
+                </div>
+                <div class="col-xs-6 col-sm-3 col-md-3 no-padding">
+                    <span style="line-height: 50px; font-size: 1.3em;" am-time-ago="train.eta"></span>
+                </div>
+                <div class="col-xs-6 col-sm-4 col-md-4" data-ng-repeat-end>
+                    <div data-ng-repeat="(username, code) in train.willHeMakeIt">
+                        <div class="pull-right img-circle text-center"
+                             style="padding-top: 10px; font-size: 1.7em; color:#fff; line-height: 50px; margin: 4px 4px; height: 50px; width:50px;"
+                             background-image="//graph.facebook.com/{{username}}/picture?width=50">
+                            <i data-ng-class="{'will-make-it fa-thumbs-up': depCtrl.willMakeIt(code), 'might-make-it fa-rocket': depCtrl.mightMakeIt(code), 'wont-make-it fa-thumbs-down': depCtrl.wontMakeIt(code)}"
+                               class="fa"></i>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-6">
+
+            <div class="row">
+
+                <div class="col-xs-12">
+                    <h3>Eastbound</h3>
+                </div>
+
+                <div data-ng-repeat-start="train in depCtrl.departuresEast" class="col-xs-6 col-sm-5 col-md-5">
+                    <div style="line-height: 50px; font-size: 1.4em;">{{ train.destination }}</div>
+                </div>
+                <div class="col-xs-6 col-sm-3 col-md-3 no-padding">
+                    <span style="line-height: 50px; font-size: 1.3em;" am-time-ago="train.eta"></span>
+                </div>
+                <div class="col-xs-6 col-sm-4 col-md-4" data-ng-repeat-end>
+                    <div data-ng-repeat="(username, code) in train.willHeMakeIt">
+                        <div class="pull-right img-circle text-center"
+                             style="padding-top: 10px; font-size: 1.7em; color:#fff; line-height: 50px; margin: 4px 4px; height: 50px; width:50px;"
+                             background-image="//graph.facebook.com/{{username}}/picture?width=50">
+                            <i data-ng-class="{'will-make-it fa-thumbs-up': depCtrl.willMakeIt(code), 'might-make-it fa-rocket': depCtrl.mightMakeIt(code), 'wont-make-it fa-thumbs-down': depCtrl.wontMakeIt(code)}"
+                               class="fa"></i>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!--<div class="col-xs-12">-->
+        <!--<pre>{{ depCtrl | json }}</pre>-->
+        <!--<script type="text/javascript"> moWWidgetParams="moAllowUserLocation:false~moBackgroundColour:black~moColourScheme:green~moDays:3~moDomain:www.metoffice.gov.uk~moFSSI:352409~moListStyle:vertical~moMapDisplay:none~moShowFeelsLike:true~moShowUV:true~moShowWind:true~moSpecificHeight:275~moSpecificWidth:300~moSpeedUnits:M~moStartupLanguage:en~moTemperatureUnits:C~moTextColour:white~moGridParams:weather,temperature,wind,uv,pop~"; </script><script type="text/javascript" src="http://www.metoffice.gov.uk/public/pws/components/yoursite/loader.js"> </script>-->
+        <!--</div>-->
+
+
+    </div>
+</div>
+
+{% endverbatim %}
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script type="text/javascript" src="{% static 'jquery/dist/jquery.js' %}"></script>
+<script type="text/javascript" src="{% static 'bootstrap/dist/js/bootstrap.js' %}"></script>
+<script type="text/javascript" src="{% static 'angular/angular.js' %}"></script>
+<script type="text/javascript" src="{% static 'moment/moment.js' %}"></script>
+<script type="text/javascript" src="{% static 'moment-timezone/moment-timezone.js' %}"></script>
+<script type="text/javascript" src="{% static 'angular-moment/angular-moment.js' %}"></script>
+<script type="text/javascript" src="{% static 'rxjs/dist/rx.all.js' %}"></script>
+<script type="text/javascript" src="{% static 'rx-angular/dist/rx.angular.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/index.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/departures.service.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/back-img.directive.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/clock.ctrl.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/departures.ctrl.js' %}"></script>
+<script type="text/javascript" src="{% static 'lodash/lodash.js' %}"></script>
 
 </body>
 </html>

@@ -76,6 +76,7 @@
                         t.secondsUntil
                     });
                     vm.loading = false;
+                    console.log('Completed!');
                 }
             );
         });
