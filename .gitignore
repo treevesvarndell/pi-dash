@@ -1,6 +1,6 @@
 *.iml
 *.pyc
-.idea/*
+*.idea*
 components/
 node_modules
 static_target
