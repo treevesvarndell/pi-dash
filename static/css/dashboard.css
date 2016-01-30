@@ -124,3 +124,7 @@ body {
 .wont-make-it {
     color: #d9534f;
 }
+
+.no-padding {
+    padding: 0px;
+}

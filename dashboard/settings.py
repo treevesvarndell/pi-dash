@@ -10,6 +10,7 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 
@@ -95,15 +96,20 @@ USE_L10N = True
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 BOWER_COMPONENTS_ROOT = os.path.join(BASE_DIR, 'components')
 BOWER_INSTALLED_APPS = (
-    'jquery',
-    'bootstrap',
+    'moment#2.9.0',
+    'spin#1.1.6',
+    'components-font-awesome#4.4.0',
     'angular#1.3.14',
-    'moment-timezone#~0.4.0',
+    'lodash#4.1.0',
     'angular-moment#0.10.2',
-    'components-font-awesome#~4.4.0',
-    'angular-rx',
-    'rxjs',
-    'lodash'
+    'jquery#2.2.0',
+    'angular-rx#1.1.3',
+    'bootstrap#3.3.6',
+    'moment-timezone#0.4.0',
+    'rxjs#3.1.2',
+    'spin.js#2.0.2',
+    'holderjs#2.8.2',
+    'angular-spinner#0.6.2'
 )
 
 STATIC_URL = '/static/'
