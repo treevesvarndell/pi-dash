@@ -9,20 +9,22 @@
     function ScreenService($http, rx) {
         var vm = this;
 
+        vm.screenApi = '/api/screen';
+
         var service = {
-//            getScreenStatus: ,
+            getScreenStatus: getScreenStatus,
             setScreen: setScreen
         };
 
         return service;
 
-        function getApiUrl() {
-            return tflApiConfig.apiUrl + '&app_id=' + tflApiConfig.appId + '&app_key=' + tflApiConfig.appKey;
+        function getScreenStatus() {
+            return rx.Observable.fromPromise($http.get(vm.screenApi));
         }
 
         function setScreen(action) {
             return rx.Observable.fromPromise($http.post(
-                '/api/screen',
+                vm.screenApi,
                 {'action': action}
             ));
         }

@@ -13,9 +13,11 @@
 
         <div class="col-sm-12 text-center" style="padding: 20px;">
 
-            <h3>Screen</h3><div data-toggle-switch data-ng-change="stCtrl.toggleScreen()" data-ng-model="stCtrl.screenStatus"></div>
+            <div class="alert alert-info" data-ng-show="stCtrl.loading" role="alert">Loading status...</div>
+            <div class="alert alert-info" data-ng-show="stCtrl.message" role="alert">{{ stCtrl.message }}</div>
+            <div class="alert alert-danger" data-ng-show="stCtrl.error" role="alert">Could not determine screen status!</div>
 
-            <!--<h2>Screen: <input type="checkbox" checked data-ng-model="" data-toggle="toggle" data-width="100" data-height="50"></h2>-->
+            <h3>Screen</h3><div data-toggle-switch data-ng-change="stCtrl.toggleScreen()" data-ng-model="stCtrl.screenStatus"></div>
 
             <pre>{{ stCtrl | json }}</pre>
         </div>
