@@ -30,6 +30,6 @@
             }
         }
         getBikes();
-        $interval(getBikes, 50000, 0);
+        $interval(getBikes, 15000, 0);
     }
 })();
