@@ -51,18 +51,19 @@
                     rx.Observable.from(trains.data).map(function(train) {
 
                         var secondsUntil = moment(train.expectedArrival).diff(now, 'seconds');
-
                         return {
                             direction: train.direction,
-                            destination: train.destinationName.replace('DLR Station', ''),
+                            destination: _.upperFirst(train.destinationName.replace('DLR Station', '')),
                             secondsUntil: secondsUntil,
                             eta: train.expectedArrival,
                             willHeMakeIt: vm.generateWillHeMakeIt(secondsUntil)
                         };
 
                     }).forEach(function(train) {
-//                        console.log(train);
-                        train.direction === 'inbound' ? vm.departuresWest.push(train) : vm.departuresEast.push(train);
+                        // some trains have no direction, but we only see these departing west
+                        train.direction === 'inbound' || train.direction === '' ?
+                            vm.departuresWest.push(train) :
+                            vm.departuresEast.push(train);
                     });
 
                 },
