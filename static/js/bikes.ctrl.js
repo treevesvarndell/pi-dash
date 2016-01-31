@@ -13,7 +13,7 @@
             $http.get("https://api-prod6.tfl.gov.uk/Place/BikePoints_547")
                 .success(function (data) {
                     vm.numberOfBikes = data.additionalProperties.filter(availableBikes)[0].value;
-                    vm.numberOfSlots = data.additionalProperties.filter(spareDocks)[0].value;
+                    vm.numberOfDocks = data.additionalProperties.filter(totalDocks)[0].value;
                 })
 
         }
@@ -24,8 +24,8 @@
             }
         }
 
-        function spareDocks(obj) {
-            if (obj.key === "NbEmptyDocks") {
+        function totalDocks(obj) {
+            if (obj.key === "NbDocks") {
                 return true;
             }
         }
