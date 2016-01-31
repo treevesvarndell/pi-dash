@@ -66,7 +66,7 @@
                     });
 
                 },
-                function(err) {
+                function(error) {
                     console.log('error:' + error)
                 },
                 function() {
