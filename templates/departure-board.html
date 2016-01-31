@@ -34,7 +34,7 @@
                 </div>
 
                 <div data-ng-repeat-start="train in depCtrl.departuresWest" class="col-xs-6 col-sm-5 col-md-5">
-                    <div style="line-height: 50px; font-size: 1.4em;">{{ train.destination }}</div>
+                    <div style="line-height: 50px; font-size: 1.4em; padding-left: 5px;">{{ train.destination }}</div>
                 </div>
                 <div class="col-xs-6 col-sm-3 col-md-3 no-padding">
                     <span style="line-height: 50px; font-size: 1.3em;" am-time-ago="train.eta"></span>
@@ -63,7 +63,7 @@
                 </div>
 
                 <div data-ng-repeat-start="train in depCtrl.departuresEast" class="col-xs-6 col-sm-5 col-md-5">
-                    <div style="line-height: 50px; font-size: 1.4em;">{{ train.destination }}</div>
+                    <div style="line-height: 50px; font-size: 1.4em; padding-left: 5px;">{{ train.destination }}</div>
                 </div>
                 <div class="col-xs-6 col-sm-3 col-md-3 no-padding">
                     <span style="line-height: 50px; font-size: 1.3em;" am-time-ago="train.eta"></span>
@@ -85,7 +85,9 @@
         <div data-ng-controller="BikesCtrl as bikesCtrl">
             <div class="col-xs-6" style="line-height: 50px; font-size: 1.4em;">
                 <h3>Cycle Hire</h3>
-                {{ bikesCtrl.numberOfBikes }} bikes available and {{ bikesCtrl.numberOfSlots }} free docking points.
+                <div style="padding-left: 5px;">
+                    {{ bikesCtrl.numberOfBikes }} / {{ bikesCtrl.numberOfSlots }} bikes available
+                </div>
             </div>
         </div>
 
