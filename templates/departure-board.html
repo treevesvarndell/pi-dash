@@ -30,7 +30,7 @@
             <div class="row">
 
                 <div class="col-xs-12">
-                    <h3>Westbound</h3>
+                    <h3><i class="fa fa-train"></i> Westbound</h3>
                 </div>
 
                 <div data-ng-repeat-start="train in depCtrl.departuresWest" class="col-xs-6 col-sm-5 col-md-5">
@@ -59,7 +59,7 @@
             <div class="row">
 
                 <div class="col-xs-12">
-                    <h3>Eastbound</h3>
+                    <h3><i class="fa fa-train"></i> Eastbound</h3>
                 </div>
 
                 <div data-ng-repeat-start="train in depCtrl.departuresEast" class="col-xs-6 col-sm-5 col-md-5">
@@ -84,7 +84,7 @@
 
         <div data-ng-controller="BikesCtrl as bikesCtrl">
             <div class="col-xs-6" style="line-height: 50px; font-size: 1.4em;">
-                <h3>Cycle Hire</h3>
+                <h3><i class="fa fa-bicycle"></i> Cycle Hire</h3>
                 <div style="padding-left: 5px;">
                     {{ bikesCtrl.numberOfBikes }} / {{ bikesCtrl.numberOfSlots }} bikes available
                 </div>
