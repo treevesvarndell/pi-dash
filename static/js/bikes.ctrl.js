@@ -4,9 +4,9 @@
         .module('app.dashboard')
         .controller('BikesCtrl', BikesCtrl);
 
-    BikesCtrl.$inject = ['$http'];
+    BikesCtrl.$inject = ['$http', '$interval'];
 
-    function BikesCtrl($http) {
+    function BikesCtrl($http, $interval) {
         var vm = this;
 
         function getBikes() {
@@ -29,7 +29,7 @@
                 return true;
             }
         }
-
-        getBikes()
+        getBikes();
+        $interval(getBikes, 50000, 0);
     }
 })();
