@@ -6,22 +6,31 @@ from django.utils.decorators import method_decorator
 from rest_framework import views
 from rest_framework.response import Response
 from subprocess import call, check_output
+from django.conf import settings
+import subprocess
 
 
 class ScreenApiView(views.APIView):
     permission_classes = []
-    file_path = "/home/pi/dashboard/scripts/monitorToggle.sh"
+
+    print(settings.BASE_DIR)
+    file_path = settings.BASE_DIR + '/scripts/monitorToggle.sh'
 
     def get(self, request):
 
         if not os.path.isfile(self.file_path):
             tv_status = 'error'
         else:
-            status_check = check_output([self.file_path, 'status'])
-            if re.compile("TV is off").search(status_check):
-                tv_status = 'off'
-            else:
-                tv_status = 'on'
+            try:
+                status_check = check_output([self.file_path, 'status'])
+
+                if re.compile("TV is off").search(status_check):
+                    tv_status = 'off'
+                else:
+                    tv_status = 'on'
+
+            except subprocess.CalledProcessError:
+                tv_status = 'error'
 
         return Response({'status': tv_status})
 
