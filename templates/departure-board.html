@@ -91,6 +91,17 @@
             </div>
         </div>
 
+        <div data-ng-controller="WeatherCtrl as weatherCtrl">
+            <div class="col-xs-6" style="line-height: 50px; font-size: 1.4em;">
+                <h3><i class="fa fa-cloud"></i> Weather</h3>
+                <div style="padding-left: 5px;">
+                    It's currently {{ weatherCtrl.temp }}&deg;C with {{ weatherCtrl.weather }}. <p/>
+                    Humidity is at {{ weatherCtrl.humidity }}&percnt; and the wind speed is {{ weatherCtrl.wind }}mph.
+                </div>
+            </div>
+        </div>
+
+
         <!--<div class="col-xs-12">-->
         <!--<pre>{{ depCtrl | json }}</pre>-->
         <!--<script type="text/javascript"> moWWidgetParams="moAllowUserLocation:false~moBackgroundColour:black~moColourScheme:green~moDays:3~moDomain:www.metoffice.gov.uk~moFSSI:352409~moListStyle:vertical~moMapDisplay:none~moShowFeelsLike:true~moShowUV:true~moShowWind:true~moSpecificHeight:275~moSpecificWidth:300~moSpeedUnits:M~moStartupLanguage:en~moTemperatureUnits:C~moTextColour:white~moGridParams:weather,temperature,wind,uv,pop~"; </script><script type="text/javascript" src="http://www.metoffice.gov.uk/public/pws/components/yoursite/loader.js"> </script>-->
@@ -107,5 +118,6 @@
     <script type="text/javascript" src="{% static 'js/back-img.directive.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/departures.ctrl.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/bikes.ctrl.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/weather.ctrl.js' %}"></script>
     <script type="text/javascript" src="{% static 'lodash/lodash.js' %}"></script>
 {% endblock %}
