@@ -9,7 +9,7 @@
     function ScreenService($http, rx) {
         var vm = this;
 
-        vm.screenApi = '/api/screen';
+        vm.screenApi = '/api/screen?format=json';
 
         var service = {
             getScreenStatus: getScreenStatus,
