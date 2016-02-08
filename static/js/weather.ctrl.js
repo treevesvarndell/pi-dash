@@ -69,7 +69,7 @@
 
         getForecastForDay();
         getWeatherNow();
-        $interval(getWeatherNow, 1800000, 0);
+        $interval(getWeatherNow, 2800000, 0);
         $interval(getForecastForDay, 3600000, 0);
     }
 })();
