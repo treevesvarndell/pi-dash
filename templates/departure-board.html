@@ -83,7 +83,7 @@
         </div>
 
         <div data-ng-controller="BikesCtrl as bikesCtrl">
-            <div class="col-xs-6" style="line-height: 50px; font-size: 1.4em;">
+            <div class="col-xs-6" style="line-height: 50px; font-size: 1.5em;">
                 <h3><i class="fa fa-bicycle"></i> Cycle Hire</h3>
                 <div style="padding-left: 5px;">
                     {{ bikesCtrl.numberOfBikes }} / {{ bikesCtrl.numberOfDocks }} bikes available
@@ -92,15 +92,19 @@
         </div>
 
         <div data-ng-controller="WeatherCtrl as weatherCtrl">
-            <div class="col-xs-6" style="line-height: 50px; font-size: 1.4em;">
-                <h3><i class="fa fa-cloud"></i> Weather</h3>
+            <div class="col-xs-6" style="line-height: 50px; font-size: 1.5em;">
+                <h3><i class="fa fa-cloud"></i> Weather Now</h3>
                 <div style="padding-left: 5px;">
-                    It's currently {{ weatherCtrl.temp }}&deg;C with {{ weatherCtrl.weather }}. <p/>
-                    Humidity is at {{ weatherCtrl.humidity }}&percnt; and the wind speed is {{ weatherCtrl.wind }}mph.
+                    <strong>{{ weatherCtrl._weatherType }} and {{ weatherCtrl._temperature }}&deg;C</strong>
+                    it feels like <strong>{{ weatherCtrl._feelsLike }}&deg;C</strong> up to <strong>{{ weatherCtrl._feelsLikeMax }}&deg;C</strong>
+                    <br>
+                    Precipitation probability is <strong>{{ weatherCtrl._precProb }}&percnt;</strong>
+                    <br>
+                    Wind is <strong>{{ weatherCtrl._windSpeed }}mph</strong>
+                    with gusts of <strong>{{ weatherCtrl._gustSpeed }}mph</strong>
                 </div>
             </div>
         </div>
-
 
         <!--<div class="col-xs-12">-->
         <!--<pre>{{ depCtrl | json }}</pre>-->
