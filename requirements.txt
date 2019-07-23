@@ -1,5 +1,5 @@
 wsgiref==0.1.2
-Django==1.7.4
+Django==1.11.22
 django-bower==5.0.2
 djangorestframework==3.0.5
 travispy==0.3.3
